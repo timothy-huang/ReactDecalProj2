@@ -14,9 +14,11 @@ Our app uses the Spotify API’s Search and Recommendation endpoints in order to
 
 Left Container
 - Filter Sliders
+
 Right Container
 - Search Bar
 - Song Card
+
 Playback Bar
 - Playback Buttons
 - Playback Tracker
