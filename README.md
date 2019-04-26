@@ -4,6 +4,7 @@ Timothy Huang, Chloe Lin, Phatdat Nguyen
 # Title: Slidify
 
 Team Members: Timothy Huang, Phatdat Nguyen, Chloe Liu
+
 Prompt: Spotify Client
 
 # Abstract:
