@@ -1,5 +1,4 @@
 # ReactDecalProj2
-Timothy Huang, Chloe Lin, Phatdat Nguyen
 
 # Title: Slidify
 
