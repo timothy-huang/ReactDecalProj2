@@ -1,0 +1,23 @@
+.container {
+  padding: 32px;
+  background-color: #f2f2f2;
+}
+
+.title {
+  font-size: 60px;
+  color: #737373;
+}
+
+.row-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.song-container {
+  height: 450px;
+  margin-top: 64px;
+  padding-left: 72px;
+  padding-right: 72px;
+}
