@@ -8,10 +8,11 @@
 .slider-container {
   padding-top: 32px;
   padding-left: 60px;
-  float:left;
+  float: left;
   width: 400px;
   height: 585px;
   background-color: #f2f2f2;
+  overflow: auto;
 }
 
 .title {

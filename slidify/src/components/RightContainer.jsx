@@ -28,6 +28,10 @@ class RightContainer extends React.Component {
           <SongCard number="4" title="Head in the Cloud - 88rising" />
           <SongCard number="5" title="Gravity - John Mayer" />
           <SongCard number="6" title="New Light - John Mayer" />
+          <SongCard number="7" title="Palace - Sam Smith" />
+          <SongCard number="8" title="Head in the Cloud - 88rising" />
+          <SongCard number="9" title="Gravity - John Mayer" />
+          <SongCard number="10" title="New Light - John Mayer" />
         </div>
       </div>
     );

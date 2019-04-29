@@ -1,42 +1,41 @@
-.bar {
-    
-    background-color: #737373;
-    
-  }
-
-.volume-bar {
-    overflow: hidden;
-    width: 150px;
-    float: right;
-    padding-top: 100px;
-    padding-right: 120px;
-    
+.bar-container {
+  background-color: #e7e6e5;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  /* flex-direction: row;
+  justify-content: center;
+  align-items: center; */
+  position: absolute;
+  bottom: 0;
+  height: 120px;
+  width: 100%;
 }
 
-.volume {
-    overflow: hidden;
-    font-size: 20px;
-    padding-left: 30px;
-    padding-bottom: 10px;
-    color: #000000;
-  }
-
-.progress-bar {
-    overflow: hidden;
-    padding-top: 100px;
-    padding-left: 275px;
-    height: 10px;
-    width: 1200px;
+.playback-container {
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 
 .button-container {
-    padding-left: 725px;
-    padding-top: 100px;
-    background-color: #000000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
-  }
+.progress-bar {
+  margin-top: 16px;
+  height: 10px;
+  width: 600px;
+}
 
-  
-
-  
+.volume-bar-container {
+  grid-column-start: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+}

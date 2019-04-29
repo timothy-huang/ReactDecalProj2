@@ -2,7 +2,7 @@
   padding-top: 32px;
   padding-left: 45px;
   padding-right: 50px;
-  overflow: hidden;
+  padding-bottom: 100px;
   background-color: #f2f2f2;
 }
 
@@ -19,8 +19,9 @@
 }
 
 .song-container {
-  height: 450px;
-  margin-top: 64px;
+  height: 435px;
+  margin-top: 32px;
   padding-left: 72px;
   padding-right: 72px;
+  overflow: auto;
 }
