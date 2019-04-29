@@ -48,6 +48,7 @@ class PlaybackBar extends React.Component {
               min={0}
               max={this.state.total_ms}
               value={this.state.progress_ms}
+              onChange={this.handleChange("progress_ms")}
             />
           </div>
         </div>
@@ -55,7 +56,7 @@ class PlaybackBar extends React.Component {
           <VolumeUp style={{ color: "#2E3B84", marginRight: 16 }} />
           <Slider
             min={0}
-            max={1}
+            max={100}
             value={this.state.volume}
             onChange={this.handleChange("volume")}
             style={{ color: "#f2f2f2" }}
