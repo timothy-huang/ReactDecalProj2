@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
 import Slider from '@material-ui/lab/Slider';
+
 import "../styles/LeftContainer.css";
 // import { createMuiTheme } from '@material-ui/core/styles';
 // import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -27,6 +28,11 @@ class LeftContainer extends Component {
         [name]: value
       });
   };
+
+
+  // fetch: recommandation - seed from the search  
+  // handleSummit
+
 
   render() {
     const {Danceability, Duration, Energy, Loudness, Speechiness, Tempo, Valence} = this.state;
@@ -94,6 +100,7 @@ class LeftContainer extends Component {
           onChange={this.handleChange("Valence")} />
 
         </div>
+
 
         </div>
       </div>

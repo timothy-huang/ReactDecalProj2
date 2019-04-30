@@ -14,11 +14,24 @@ class RightContainer extends React.Component {
     };
   }
 
+
+
   render() {
     return (
       <div className="container">
         <div className="row-container">
           <div className="title">Slidify</div>
+
+          <form className="ui form" onSubmit={this.onSubmit}>
+          <input
+            type="text"
+            onChange={e => this.setState({ search: e.target.value })}
+          />
+          <input type="submit" value="Search" />
+        </form>
+
+
+          <>
           <SearchBar />
         </div>
         <div className="song-container">
