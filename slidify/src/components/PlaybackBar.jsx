@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import Slider from "@material-ui/lab/Slider";
 import {
   PlayCircleOutline,
+  PauseCircleOutline,
   SkipPrevious,
   SkipNext,
   VolumeUp
@@ -18,6 +19,8 @@ class PlaybackBar extends React.Component {
       progress_ms: 0, // Need this to update in real time.
       total_ms: 1 // Want to grab the song's length in total milliseconds from the API.
     };
+
+    // this.togglePlay = this.togglePlay.bind(this);
   }
 
   handleChange = name => (e, value) => {
@@ -26,21 +29,41 @@ class PlaybackBar extends React.Component {
     });
   };
 
+  togglePlay() {
+    this.setState(prevState => ({
+      isPlaying: !prevState.isPlaying
+    }));
+  }
+
   render() {
     return (
       <div className="bar-container">
         <div className="playback-container">
           <div className="button-container">
             <SkipPrevious style={{ fontSize: 32, color: "#2E3B84" }} />
-            <PlayCircleOutline
-              style={{
-                fontSize: 48,
-                color: "#2E3B84",
-                marginLeft: 16,
-                marginRight: 16
-              }}
-              onClick={this.handleChange("isPlaying", true)}
-            />
+            {this.state.isPlaying ? (
+              <Button onClick={() => this.togglePlay()}>
+                <PauseCircleOutline
+                  style={{
+                    fontSize: 48,
+                    color: "#2E3B84",
+                    marginLeft: 16,
+                    marginRight: 16
+                  }}
+                />
+              </Button>
+            ) : (
+              <Button onClick={() => this.togglePlay()}>
+                <PlayCircleOutline
+                  style={{
+                    fontSize: 48,
+                    color: "#2E3B84",
+                    marginLeft: 16,
+                    marginRight: 16
+                  }}
+                />
+              </Button>
+            )}
             <SkipNext style={{ fontSize: 32, color: "#2E3B84" }} />
           </div>{" "}
           <div className="progress-bar">
