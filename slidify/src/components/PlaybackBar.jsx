@@ -13,7 +13,6 @@ class PlaybackBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPlaying: false,
       volume: 0,
       progress_ms: 0, // Need this to update in real time.
       total_ms: 1 // Want to grab the song's length in total milliseconds from the API.
@@ -28,19 +27,13 @@ class PlaybackBar extends Component {
     });
   };
 
-  togglePlay() {
-    this.setState(prevState => ({
-      isPlaying: !prevState.isPlaying
-    }));
-  }
-
   render() {
     return (
       <div className="bar-container">
         <div className="playback-container">
           <div className="button-container">
             <SkipPrevious style={{ fontSize: 32, color: "#2E3B84" }} />
-            {this.state.isPlaying ? (
+            {this.props.isPlaying ? (
               <PauseCircleOutline
                 style={{
                   fontSize: 48,
@@ -48,7 +41,9 @@ class PlaybackBar extends Component {
                   marginLeft: 16,
                   marginRight: 16
                 }}
-                onClick={() => this.togglePlay()}
+                onClick={() => {
+                  this.props.pausePlayback();
+                }}
               />
             ) : (
               <PlayCircleOutline
@@ -58,7 +53,9 @@ class PlaybackBar extends Component {
                   marginLeft: 16,
                   marginRight: 16
                 }}
-                onClick={() => this.togglePlay()}
+                onClick={() => {
+                  this.props.resumePlayback();
+                }}
               />
             )}
             <SkipNext style={{ fontSize: 32, color: "#2E3B84" }} />
