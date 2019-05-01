@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import Slider from "@material-ui/lab/Slider";
 import {
   PlayCircleOutline,
@@ -10,7 +9,7 @@ import {
 } from "@material-ui/icons";
 import "../styles/PlaybackBar.css";
 
-class PlaybackBar extends React.Component {
+class PlaybackBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,27 +41,25 @@ class PlaybackBar extends React.Component {
           <div className="button-container">
             <SkipPrevious style={{ fontSize: 32, color: "#2E3B84" }} />
             {this.state.isPlaying ? (
-              <Button onClick={() => this.togglePlay()}>
-                <PauseCircleOutline
-                  style={{
-                    fontSize: 48,
-                    color: "#2E3B84",
-                    marginLeft: 16,
-                    marginRight: 16
-                  }}
-                />
-              </Button>
+              <PauseCircleOutline
+                style={{
+                  fontSize: 48,
+                  color: "#2E3B84",
+                  marginLeft: 16,
+                  marginRight: 16
+                }}
+                onClick={() => this.togglePlay()}
+              />
             ) : (
-              <Button onClick={() => this.togglePlay()}>
-                <PlayCircleOutline
-                  style={{
-                    fontSize: 48,
-                    color: "#2E3B84",
-                    marginLeft: 16,
-                    marginRight: 16
-                  }}
-                />
-              </Button>
+              <PlayCircleOutline
+                style={{
+                  fontSize: 48,
+                  color: "#2E3B84",
+                  marginLeft: 16,
+                  marginRight: 16
+                }}
+                onClick={() => this.togglePlay()}
+              />
             )}
             <SkipNext style={{ fontSize: 32, color: "#2E3B84" }} />
           </div>{" "}

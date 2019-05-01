@@ -1,55 +1,26 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-=======
-import logo from "./logo.svg";
 import "./App.css";
 import Spotify from "spotify-web-api-js";
 import ReactDOM from "react-dom";
-
->>>>>>> 2f72179a660ca4e40caf2dd2d86c70bed9faef55
-
 import RightContainer from "./components/RightContainer.jsx";
 import LeftContainer from "./components/LeftContainer.jsx";
 import PlaybackBar from "./components/PlaybackBar.jsx";
 
-<<<<<<< HEAD
-import Spotify from "spotify-web-api-js";
-
 class App extends Component {
   constructor(props) {
     super(props);
-
-=======
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
->>>>>>> 2f72179a660ca4e40caf2dd2d86c70bed9faef55
     this.state = {
       authenticated: false,
       devices: [],
       songs: [],
-<<<<<<< HEAD
       search: "",
-      currentDevice: ""
-    };
-
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  render() {
-    return (
-      <div>
-        <LeftContainer />
-        <RightContainer />
-        <PlaybackBar />
-=======
       currentDevice: "",
       seed_artists: [],
       seed_genres: [],
       seed_tracks: []
     };
     this.search = this.search.bind(this);
+    this.startPlayback = this.startPlayback.bind(this);
   }
 
   async componentDidMount() {
@@ -66,16 +37,20 @@ class App extends React.Component {
       this.setState({
         authenticated: true,
         devices,
-        // currentDevice: devices[0].id
+        currentDevice: devices[0].id
       });
     }
   }
 
   async startPlayback(songId) {
-    await this.spotifyClient.play({
-      device_id: this.state.currentDevice,
-      uris: [`spotify:track:${songId}`]
-    });
+    try {
+      await this.spotifyClient.play({
+        device_id: this.state.currentDevice,
+        uris: [`spotify:track:${songId}`]
+      });
+    } catch (err) {
+      console.log("This is the error: " + err);
+    }
   }
 
   async search(keyword) {
@@ -86,7 +61,6 @@ class App extends React.Component {
     });
     this.setState({ songs });
   }
-
 
   render() {
     if (!this.state.authenticated) {
@@ -102,16 +76,17 @@ class App extends React.Component {
       );
     }
     return (
-      <div className="ui container">
-      <LeftContainer />
-      <RightContainer songs={this.state.songs} search={this.search} onChange={this.onChange}/>
-      <PlaybackBar />
->>>>>>> 2f72179a660ca4e40caf2dd2d86c70bed9faef55
+      <div>
+        <LeftContainer />
+        <RightContainer
+          songs={this.state.songs}
+          search={this.search}
+          startPlayback={this.startPlayback}
+        />
+        <PlaybackBar />
       </div>
     );
   }
 }
-
-
 
 export default App;
