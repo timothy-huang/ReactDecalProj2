@@ -59,7 +59,7 @@ class RightContainer extends React.Component {
             />
           </form>
         </div>
-        <div>
+
         {this.state.songs.length === 0 ? <EmptyState /> :
         <div className="song-container">
           {this.state.songs.map((song, index) => (
@@ -70,16 +70,8 @@ class RightContainer extends React.Component {
               songId={song.id}
               startPlayback={this.props.startPlayback}
             />
-            // <div
-            //   className="song-card"
-            //   onClick={() => startPlayback(song.id)}
-            //   key={song.id}
-            // >
-            //   <div className="song-number">{index}</div>
-            //   <div className="song-title">{song.name}</div>
-            // </div>
           ))}
-        </div>
+        </div>}
       </div>
     );
   }

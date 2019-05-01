@@ -6,8 +6,8 @@
 }
 
 .slider-container {
-  padding-top: 32px;
-  padding-left: 50px;
+  padding-top: 35px;
+  padding-left: 80px;
   float: left;
   width: 400px;
   height: 585px;
@@ -22,8 +22,8 @@
 
 .submit-button {
   position: absolute;
-  left: 250px;
-  top: 540px;
+  left: 210px;
+  top: 525px;
   font-size: 14px;
   color: #F2F2F2;
   background-color: #737373;
