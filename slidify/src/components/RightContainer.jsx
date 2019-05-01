@@ -8,30 +8,58 @@ import "../styles/RightContainer.css";
 class RightContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
 
     this.state = {
-      songs: []
+      keyword: '',
+      songs: props.songs
     };
   }
 
+  onSubmit(props) {
+    const { search } = this.props;
+    const { keyword } = this.state;
+    if (keyword !== '') {
+      search(keyword);
+      this.setState({ keyword: '' });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+  if (nextProps.songs !== this.state.songs) {
+    this.setState({ songs: nextProps.songs });
+  }
+}
+
+  handleKeyPress(ev, props) {
+  if (ev.key == 'Enter'){
+    this.onSubmit(props);
+  }
+  }
+
+
   render() {
+    const { keyword } = this.state;
     return (
       <div className="container">
         <div className="row-container">
           <div className="title">Slidify</div>
-          <SearchBar />
+
+          <form className="search-form" >
+          <input
+            type="text"
+            placeholder="Search"
+            value={keyword}
+            onChange={e => this.setState({keyword: e.target.value})}
+            onKeyPress={this.handleKeyPress}
+          />
+          </form>
         </div>
         <div className="song-container">
-          <SongCard number="1" title="Midsummer Madness - 88rising" />
-          <SongCard number="2" title="New Light - John Mayer" />
-          <SongCard number="3" title="Palace - Sam Smith" />
-          <SongCard number="4" title="Head in the Cloud - 88rising" />
-          <SongCard number="5" title="Gravity - John Mayer" />
-          <SongCard number="6" title="New Light - John Mayer" />
-          <SongCard number="7" title="Palace - Sam Smith" />
-          <SongCard number="8" title="Head in the Cloud - 88rising" />
-          <SongCard number="9" title="Gravity - John Mayer" />
-          <SongCard number="10" title="New Light - John Mayer" />
+        {this.state.songs.map((song, index) => (
+              <SongCard number={index} title={song.name} key={song.id} />
+            ))}
         </div>
       </div>
     );
