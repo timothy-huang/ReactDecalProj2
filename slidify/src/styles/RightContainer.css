@@ -1,5 +1,5 @@
 .container {
-  padding-top: 32px;
+  padding-top: 25px;
   padding-left: 45px;
   padding-right: 50px;
   padding-bottom: 100px;
@@ -9,6 +9,7 @@
 .title {
   font-size: 60px;
   color: #737373;
+  padding-left: 30px;
 }
 
 .row-container {
@@ -19,8 +20,8 @@
 }
 
 .song-container {
-  height: 435px;
-  margin-top: 32px;
+  height: 400px;
+  margin-top: 28px;
   padding-left: 72px;
   padding-right: 72px;
   overflow: auto;

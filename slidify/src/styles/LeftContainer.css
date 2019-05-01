@@ -1,13 +1,13 @@
 .label {
-  padding-top: 25px;
-  padding-bottom: 22px;
+  padding-top: 20px;
+  padding-bottom: 15px;
   width: 100%;
   color: #737373;
 }
 
 .slider-container {
   padding-top: 32px;
-  padding-left: 60px;
+  padding-left: 50px;
   float: left;
   width: 400px;
   height: 585px;
@@ -15,7 +15,23 @@
   overflow: auto;
 }
 
-.title {
+.title-left {
   font-size: 60px;
   color: #737373;
+}
+
+.submit-button {
+  position: absolute;
+  left: 250px;
+  top: 540px;
+  font-size: 14px;
+  color: #F2F2F2;
+  background-color: #737373;
+  height: 35px;
+  width: 90px;
+}
+
+.submit-button:hover {
+  background-color: #313189;
+  color: #F2F2F2;
 }

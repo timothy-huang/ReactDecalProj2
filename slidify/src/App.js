@@ -17,12 +17,12 @@ class App extends React.Component {
       authenticated: false,
       devices: [],
       songs: [],
-      currentDevice: "",
-      seed_artists: [],
-      seed_genres: [],
-      seed_tracks: []
+      currentDevice: ""
     };
+
     this.search = this.search.bind(this);
+    this.filter = this.filter.bind(this);
+
   }
 
   async componentDidMount() {
@@ -55,16 +55,54 @@ class App extends React.Component {
     const {
       tracks: { items: songs }
     } = await this.spotifyClient.searchTracks(keyword, {
-      market: "us"
+      market: "us",
+      limit: 40
     });
     this.setState({ songs });
   }
+
+  async filter(selected) {
+    var i;
+    var remove = new Array;
+    var new_songs = this.state.songs;
+    for (i = 0; i < new_songs.length; i++) {
+        const features = await this.spotifyClient.getAudioFeaturesForTrack(new_songs[i].id);
+        if ((selected.Danceability && (features.danceability > selected.Danceability)) ||
+            (selected.Duration && (features.duration_ms > selected.Duration)) ||
+            (selected.Energy && (features.energy > selected.Energy)) ||
+            (selected.Loudness && (features.loudness > selected.Loudness)) ||
+            (selected.Speechiness && (features.speechiness > selected.Speechiness)) ||
+            (selected.Tempo && (features.tempo > selected.Tempo)) ||
+            (selected.Valence && (features.valence > selected.Valence))) {
+                  remove.push(new_songs[i]);
+            }
+
+    }
+    for (var j = new_songs.length - 1; j >= 0; j--) {
+      if (remove.includes(new_songs[j])) {
+        new_songs.splice(j,1);
+      }
+    }
+
+    this.setState({songs: new_songs});
+  }
+
+
+  // add_filter(name, value) {
+  //   this.setState( prevState => ({ select_features :
+  //       {...prevState.select_features, [name]: value}
+  //     }))
+  // }
+
 
 
   render() {
     if (!this.state.authenticated) {
       return (
-        <a
+        <div className="login-container">
+        <img className="icon" src={require("./images/icon.png")}/>
+        <p className="welcome">Welcome to Slidify! </p>
+        <a className="login"
           href={`https://accounts.spotify.com/authorize/?client_id=86df5736814c48ffaa72a7c2629076d9&response_type=token&redirect_uri=${window
             .location.origin +
             window.location
@@ -72,11 +110,12 @@ class App extends React.Component {
         >
           Login with Spotify
         </a>
+        </div>
       );
     }
     return (
       <div className="ui container">
-      <LeftContainer />
+      <LeftContainer filter={this.filter}/>
       <RightContainer songs={this.state.songs} search={this.search} onChange={this.onChange}/>
       <PlaybackBar />
       </div>

@@ -5,3 +5,42 @@ LeftContainer {
 RightContainer {
   float: right;
 }
+
+.login {
+  width: 200px;
+  height: 45px;
+  text-align: center;
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 20px;
+  /* border-radius: 10%; */
+  border-style: solid;
+  border-color: #737373;
+  /* color: #FFFFFF; */
+  position: absolute;
+  left: 750px;
+  top: 350px;
+  color: #737373;
+  text-decoration: none;
+}
+
+.login:hover {
+  border-style: none;
+  background-color: #183C59;
+  color: #FFFFFF;
+}
+
+.welcome {
+  font-size: 60px;
+  color: #737373;
+  position: absolute;
+  left: 640px;
+  top: 150px;
+}
+
+.icon {
+  position: absolute;
+  left: 300px;
+  top: 200px;
+}

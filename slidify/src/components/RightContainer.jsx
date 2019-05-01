@@ -2,6 +2,7 @@ import React from "react";
 
 import SongCard from "./SongCard";
 import SearchBar from "./SearchBar";
+import EmptyState from "./EmptyState";
 
 import "../styles/RightContainer.css";
 
@@ -56,10 +57,13 @@ class RightContainer extends React.Component {
           />
           </form>
         </div>
+        <div>
+        {this.state.songs.length === 0 ? <EmptyState /> :
         <div className="song-container">
         {this.state.songs.map((song, index) => (
               <SongCard number={index} title={song.name} key={song.id} />
             ))}
+        </div>}
         </div>
       </div>
     );

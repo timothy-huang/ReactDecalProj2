@@ -13,26 +13,36 @@ import "../styles/LeftContainer.css";
 
 
 class LeftContainer extends Component {
-  state = {
+  constructor(props) {
+  super(props);
+  this.state = {
     Danceability: 0.5,
-    Duration: 1000,
+    Duration: 500000,
     Energy: 0.5,
     Loudness: -30,
     Speechiness: 0.33,
-    Tempo: 20,
+    Tempo: 80,
     Valence: 0.5
   };
+  this.handleChange = this.handleChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
 
-  handleChange = name => (e, value) => {
+}
+
+
+
+  handleChange = name => (e, value, props) => {
       this.setState({
         [name]: value
       });
   };
 
 
-  // fetch: recommandation - seed from the search  
-  // handleSummit
-
+  handleSubmit(e) {
+    e.preventDefault();
+    const { filter } = this.props;
+    filter(this.state);
+  }
 
   render() {
     const {Danceability, Duration, Energy, Loudness, Speechiness, Tempo, Valence} = this.state;
@@ -49,8 +59,9 @@ class LeftContainer extends Component {
       <div className="slider-container">
 
         <div className="slider">
-        <div className="title"> Filters </div>
+        <div className="title-left"> Filters </div>
         <div className="label"> Danceability </div>
+        <form ref="form" onSubmit={this.handleSubmit}>
         <Slider
           min={0}
           max={1}
@@ -60,7 +71,7 @@ class LeftContainer extends Component {
         <div className="label"> Duration </div>
         <Slider
           min={0}
-          max={2000}
+          max={1000000}
           value={Duration}
           onChange={this.handleChange("Duration")} />
 
@@ -73,8 +84,8 @@ class LeftContainer extends Component {
 
         <div className="label"> Loudness </div>
         <Slider
-          min={-60}
-          max={60}
+          min={-120}
+          max={120}
           value={Loudness}
           onChange={this.handleChange("Loudness")} />
 
@@ -88,7 +99,7 @@ class LeftContainer extends Component {
         <div className="label"> Tempo </div>
         <Slider
           min={0}
-          max={50}
+          max={400}
           value={Tempo}
           onChange={this.handleChange("Tempo")} />
 
@@ -99,8 +110,10 @@ class LeftContainer extends Component {
           value={Valence}
           onChange={this.handleChange("Valence")} />
 
-        </div>
 
+        <button className= "submit-button" type="submit"> Apply </button>
+        </form>
+        </div>
 
         </div>
       </div>

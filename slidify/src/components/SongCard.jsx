@@ -6,6 +6,7 @@ const SongCard = props => {
     <div className="song-card">
       <div className="song-number">{props.number}</div>
       <div className="song-title">{props.title}</div>
+      <div className="artist">{props.artist}</div>
     </div>
   );
 };
