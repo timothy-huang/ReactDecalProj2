@@ -17,13 +17,12 @@ class App extends React.Component {
       authenticated: false,
       devices: [],
       songs: [],
-      search: "",
       currentDevice: "",
       seed_artists: [],
       seed_genres: [],
       seed_tracks: []
     };
-    this.onSubmit = this.onSubmit.bind(this);
+    this.search = this.search.bind(this);
   }
 
   async componentDidMount() {
@@ -52,15 +51,15 @@ class App extends React.Component {
     });
   }
 
-  async onSubmit(ev) {
-    ev.preventDefault();
+  async search(keyword) {
     const {
       tracks: { items: songs }
-    } = await this.spotifyClient.searchTracks(this.state.search, {
+    } = await this.spotifyClient.searchTracks(keyword, {
       market: "us"
     });
     this.setState({ songs });
   }
+
 
   render() {
     if (!this.state.authenticated) {
@@ -78,7 +77,7 @@ class App extends React.Component {
     return (
       <div className="ui container">
       <LeftContainer />
-      <RightContainer />
+      <RightContainer songs={this.state.songs} search={this.search} onChange={this.onChange}/>
       <PlaybackBar />
       </div>
     );
