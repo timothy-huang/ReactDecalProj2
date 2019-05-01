@@ -60,7 +60,7 @@ class LeftContainer extends Component {
 
         <div className="slider">
         <div className="title-left"> Filters </div>
-        <div className="label"> Danceability </div>
+        <div className="label"> Danceability {this.state.Danceability}</div>
         <form ref="form" onSubmit={this.handleSubmit}>
         <Slider
           min={0}
@@ -68,42 +68,42 @@ class LeftContainer extends Component {
           value={Danceability}
           onChange={this.handleChange("Danceability")} />
 
-        <div className="label"> Duration </div>
+        <div className="label"> Duration(ms) {this.state.Duration}</div>
         <Slider
           min={0}
           max={1000000}
           value={Duration}
           onChange={this.handleChange("Duration")} />
 
-        <div className="label"> Energy </div>
+        <div className="label"> Energy {this.state.Energy}</div>
         <Slider
           min={0}
           max={1}
           value={Energy}
           onChange={this.handleChange("Energy")} />
 
-        <div className="label"> Loudness </div>
+        <div className="label"> Loudness {this.state.Loudness}</div>
         <Slider
           min={-120}
           max={120}
           value={Loudness}
           onChange={this.handleChange("Loudness")} />
 
-        <div className="label"> Speechiness </div>
+        <div className="label"> Speechiness {this.state.Speechiness}</div>
         <Slider
           min={0}
           max={1}
           value={Speechiness}
           onChange={this.handleChange("Speechiness")} />
 
-        <div className="label"> Tempo </div>
+        <div className="label"> Tempo {this.state.Tempo}</div>
         <Slider
           min={0}
-          max={400}
+          max={600}
           value={Tempo}
           onChange={this.handleChange("Tempo")} />
 
-        <div className="label"> Valence </div>
+        <div className="label"> Valence {this.state.Valence}</div>
         <Slider
           min={0}
           max={1}

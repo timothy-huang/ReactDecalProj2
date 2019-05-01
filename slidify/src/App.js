@@ -43,8 +43,8 @@ class App extends Component {
 
       this.setState({
         authenticated: true,
-        devices,
-        currentDevice: devices[0].id
+        devices
+        // currentDevice: devices[0].id
       });
     }
     let playbackState = await this.spotifyClient.getMyCurrentPlaybackState();
@@ -101,20 +101,25 @@ class App extends Component {
   async filter(selected) {
     var i;
     var remove = new Array();
+    var ids = new Array();
     var new_songs = this.state.songs;
     for (i = 0; i < new_songs.length; i++) {
-      const features = await this.spotifyClient.getAudioFeaturesForTrack(
-        new_songs[i].id
-      );
+      ids[i] = new_songs[i].id;
+    }
+    // An array of features
+    const response = await this.spotifyClient.getAudioFeaturesForTracks(ids);
+    const features = response.audio_features;
+    for (i = 0; i < features.length; i++) {
       if (
         (selected.Danceability &&
-          features.danceability > selected.Danceability) ||
-        (selected.Duration && features.duration_ms > selected.Duration) ||
-        (selected.Energy && features.energy > selected.Energy) ||
-        (selected.Loudness && features.loudness > selected.Loudness) ||
-        (selected.Speechiness && features.speechiness > selected.Speechiness) ||
-        (selected.Tempo && features.tempo > selected.Tempo) ||
-        (selected.Valence && features.valence > selected.Valence)
+          features[i].danceability > selected.Danceability) ||
+        (selected.Duration && features[i].duration_ms > selected.Duration) ||
+        (selected.Energy && features[i].energy > selected.Energy) ||
+        (selected.Loudness && features[i].loudness > selected.Loudness) ||
+        (selected.Speechiness &&
+          features[i].speechiness > selected.Speechiness) ||
+        (selected.Tempo && features[i].tempo > selected.Tempo) ||
+        (selected.Valence && features[i].valence > selected.Valence)
       ) {
         remove.push(new_songs[i]);
       }
