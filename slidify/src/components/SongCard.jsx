@@ -7,7 +7,6 @@ class SongCard extends Component {
       startPlayback,
       song,
       number,
-      artist,
       setCurrentlyPlaying,
       currentlyPlaying
     } = this.props;
@@ -23,7 +22,9 @@ class SongCard extends Component {
       >
         <div className="song-number">{number}</div>
         <div className="song-title">{song.name}</div>
-        <div className="artist">{artist}</div>
+        {song.artists.map(artist => (
+          <div className="artist">{artist.name}</div>
+        ))}
       </div>
     );
   }

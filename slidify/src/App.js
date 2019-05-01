@@ -16,7 +16,8 @@ class App extends Component {
       search: "",
       currentDevice: "",
       isPlaying: false,
-      currentlyPlaying: ""
+      currentlyPlaying: "",
+      duration: 0
     };
 
     this.search = this.search.bind(this);
@@ -25,6 +26,7 @@ class App extends Component {
     this.setCurrentlyPlaying = this.setCurrentlyPlaying.bind(this);
     this.resumePlayback = this.resumePlayback.bind(this);
     this.pausePlayback = this.pausePlayback.bind(this);
+    this.checkProgress = this.checkProgress.bind(this);
   }
 
   async componentDidMount() {
@@ -38,12 +40,18 @@ class App extends Component {
 
       const { devices } = await this.spotifyClient.getMyDevices();
       // const devices = Object.keys(devicesResp).map(key => devicesResp[key]);
+
       this.setState({
         authenticated: true,
         devices,
         currentDevice: devices[0].id
       });
     }
+    let playbackState = await this.spotifyClient.getMyCurrentPlaybackState();
+    let songDuration = playbackState.duration_ms;
+    this.setState({
+      duration: songDuration
+    });
   }
 
   async startPlayback(songId) {
@@ -126,6 +134,12 @@ class App extends Component {
     });
   }
 
+  async checkProgress() {
+    let playbackState = await this.spotifyClient.getMyCurrentPlaybackState();
+    let currentProgress = playbackState.progress_ms;
+    return currentProgress;
+  }
+
   render() {
     if (!this.state.authenticated) {
       return (
@@ -158,6 +172,8 @@ class App extends Component {
           isPlaying={this.state.isPlaying}
           resumePlayback={this.resumePlayback}
           pausePlayback={this.pausePlayback}
+          checkProgress={this.checkProgress}
+          duration={this.state.duration}
         />
       </div>
     );

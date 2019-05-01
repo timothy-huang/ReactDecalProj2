@@ -21,6 +21,12 @@ class PlaybackBar extends Component {
     // this.togglePlay = this.togglePlay.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      progress_ms: this.props.checkProgress()
+    });
+  }
+
   handleChange = name => (e, value) => {
     this.setState({
       [name]: value
@@ -63,7 +69,7 @@ class PlaybackBar extends Component {
           <div className="progress-bar">
             <Slider
               min={0}
-              max={this.state.total_ms}
+              max={this.props.duration}
               value={this.state.progress_ms}
               onChange={this.handleChange("progress_ms")}
             />
