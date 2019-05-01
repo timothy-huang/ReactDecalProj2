@@ -60,21 +60,21 @@ class RightContainer extends React.Component {
         </div>
         <div className="song-container">
           {this.state.songs.map((song, index) => (
-            // <SongCard
-            //   number={index}
-            //   title={song.name}
-            //   key={song.id}
-            //   songId={song.id}
-            //   startPlayback={this.props.startPlayback}
-            // />
-            <div
-              className="song-card"
-              onClick={() => startPlayback(song.id)}
+            <SongCard
+              number={index}
+              title={song.name}
               key={song.id}
-            >
-              <div className="song-number">{index}</div>
-              <div className="song-title">{song.name}</div>
-            </div>
+              songId={song.id}
+              startPlayback={this.props.startPlayback}
+            />
+            // <div
+            //   className="song-card"
+            //   onClick={() => startPlayback(song.id)}
+            //   key={song.id}
+            // >
+            //   <div className="song-number">{index}</div>
+            //   <div className="song-title">{song.name}</div>
+            // </div>
           ))}
         </div>
       </div>
