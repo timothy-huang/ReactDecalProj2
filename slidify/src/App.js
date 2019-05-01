@@ -1,28 +1,36 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Spotify from "spotify-web-api-js";
 import ReactDOM from "react-dom";
-
-
 import RightContainer from "./components/RightContainer.jsx";
 import LeftContainer from "./components/LeftContainer.jsx";
-import PlaybackBar from './components/PlaybackBar.jsx';
+import PlaybackBar from "./components/PlaybackBar.jsx";
 
-
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       authenticated: false,
       devices: [],
       songs: [],
+<<<<<<< HEAD
       currentDevice: ""
+=======
+      search: "",
+      currentDevice: "",
+      seed_artists: [],
+      seed_genres: [],
+      seed_tracks: []
+>>>>>>> da4244c6d2210b1b0d04871e1db3a575e8204f80
     };
 
     this.search = this.search.bind(this);
+<<<<<<< HEAD
     this.filter = this.filter.bind(this);
 
+=======
+    this.startPlayback = this.startPlayback.bind(this);
+>>>>>>> da4244c6d2210b1b0d04871e1db3a575e8204f80
   }
 
   async componentDidMount() {
@@ -39,16 +47,20 @@ class App extends React.Component {
       this.setState({
         authenticated: true,
         devices,
-        // currentDevice: devices[0].id
+        currentDevice: devices[0].id
       });
     }
   }
 
   async startPlayback(songId) {
-    await this.spotifyClient.play({
-      device_id: this.state.currentDevice,
-      uris: [`spotify:track:${songId}`]
-    });
+    try {
+      await this.spotifyClient.play({
+        device_id: this.state.currentDevice,
+        uris: [`spotify:track:${songId}`]
+      });
+    } catch (err) {
+      console.log("This is the error: " + err);
+    }
   }
 
   async search(keyword) {
@@ -114,15 +126,17 @@ class App extends React.Component {
       );
     }
     return (
-      <div className="ui container">
-      <LeftContainer filter={this.filter}/>
-      <RightContainer songs={this.state.songs} search={this.search} onChange={this.onChange}/>
-      <PlaybackBar />
+      <div>
+        <LeftContainer filter={this.filter}/>
+        <RightContainer
+          songs={this.state.songs}
+          search={this.search}
+          startPlayback={this.startPlayback}
+        />
+        <PlaybackBar />
       </div>
     );
   }
 }
-
-
 
 export default App;
