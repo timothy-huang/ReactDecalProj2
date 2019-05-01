@@ -65,8 +65,16 @@ class App extends Component {
   render() {
     if (!this.state.authenticated) {
       return (
+        // <a
+        //   href={`https://accounts.spotify.com/authorize/?client_id=86df5736814c48ffaa72a7c2629076d9&response_type=token&redirect_uri=${window
+        //     .location.origin +
+        //     window.location
+        //       .pathname}&scope=user-read-playback-state user-modify-playback-state user-top-read user-read-private`}
+        // >
+        //   Login with Spotify
+        // </a>
         <a
-          href={`https://accounts.spotify.com/authorize/?client_id=86df5736814c48ffaa72a7c2629076d9&response_type=token&redirect_uri=${window
+          href={`https://accounts.spotify.com/authorize/?client_id=becf93eea53a45ad8bc05125077fc3d4&response_type=token&redirect_uri=${window
             .location.origin +
             window.location
               .pathname}&scope=user-read-playback-state user-modify-playback-state user-top-read user-read-private`}
