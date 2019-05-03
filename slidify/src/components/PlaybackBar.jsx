@@ -22,9 +22,9 @@ class PlaybackBar extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      progress_ms: this.props.checkProgress()
-    });
+    // this.setState({
+    //   progress_ms: this.props.checkProgress()
+    // });
   }
 
   handleChange = name => (e, value) => {

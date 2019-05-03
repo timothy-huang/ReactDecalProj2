@@ -43,15 +43,15 @@ class App extends Component {
 
       this.setState({
         authenticated: true,
-        devices
-        // currentDevice: devices[0].id
+        devices,
+        currentDevice: devices[0].id
       });
     }
-    let playbackState = await this.spotifyClient.getMyCurrentPlaybackState();
-    let songDuration = playbackState.duration_ms;
-    this.setState({
-      duration: songDuration
-    });
+    // let playbackState = await this.spotifyClient.getMyCurrentPlaybackState();
+    // let songDuration = playbackState.duration_ms;
+    // this.setState({
+    //   duration: songDuration
+    // });
   }
 
   async startPlayback(songId) {
@@ -140,9 +140,9 @@ class App extends Component {
   }
 
   async checkProgress() {
-    let playbackState = await this.spotifyClient.getMyCurrentPlaybackState();
-    let currentProgress = playbackState.progress_ms;
-    return currentProgress;
+    // let playbackState = await this.spotifyClient.getMyCurrentPlaybackState();
+    // let currentProgress = playbackState.progress_ms;
+    // return currentProgress;
   }
 
   render() {
@@ -153,7 +153,7 @@ class App extends Component {
           <p className="welcome">Welcome to Slidify! </p>
           <a
             className="login"
-            href={`https://accounts.spotify.com/authorize/?client_id=86df5736814c48ffaa72a7c2629076d9&response_type=token&redirect_uri=${window
+            href={`https://accounts.spotify.com/authorize/?client_id=becf93eea53a45ad8bc05125077fc3d4&response_type=token&redirect_uri=${window
               .location.origin +
               window.location
                 .pathname}&scope=user-read-playback-state user-modify-playback-state user-top-read user-read-private`}
@@ -177,7 +177,7 @@ class App extends Component {
           isPlaying={this.state.isPlaying}
           resumePlayback={this.resumePlayback}
           pausePlayback={this.pausePlayback}
-          checkProgress={this.checkProgress}
+          // checkProgress={this.checkProgress}
           duration={this.state.duration}
         />
       </div>
